@@ -30,5 +30,10 @@ namespace Cierge.Data
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
+        internal static void Migrate(ApplicationDbContext db)
+        {
+            db.Database.Migrate();
+        }
     }
 }

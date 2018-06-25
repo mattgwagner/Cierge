@@ -52,7 +52,9 @@ namespace Cierge
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite("Data Source=Data.db");
+
+                // options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
 
                 options.UseOpenIddict();
             });
@@ -166,7 +168,7 @@ namespace Cierge
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext db)
         {
             if (env.IsDevelopment())
             {
@@ -191,6 +193,8 @@ namespace Cierge
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            ApplicationDbContext.Migrate(db);
         }
 
         public RSAParameters GetRsaSigningKey()
