@@ -11,15 +11,14 @@ using System;
 namespace Cierge.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180617013634_MigrateToOpenIddictRc22")]
-    partial class MigrateToOpenIddictRc22
+    [Migration("20180625205843_Initial-Sqlite")]
+    partial class InitialSqlite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
+                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011");
 
             modelBuilder.Entity("Cierge.Data.ApplicationUser", b =>
                 {
